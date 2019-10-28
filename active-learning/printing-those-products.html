@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Printing Those Products</title>
+</head>
+<body>
+  
+  <div class="output">
+    <h1>Output</h1>
+    <ul></ul>
+    <p></p>
+  </div>
+
+  <script>
+    let list = document.querySelector('.output ul');
+    let totalBox = document.querySelector('.output p');
+    let total = 0;
+    list.textContent = '';
+    totalBox.textContent = '';
+
+    let products = [
+      'Underpants:6.99',
+      'Socks:5.99',
+      'T-shirt:14.99',
+      'Trousers:31.99',
+      'Shoes:23.99'
+    ];
+
+    for (let i = 0; i < products.length; i++) {
+      let product = products[i];
+      let productName = product.slice(0, product.indexOf(':'));
+      let productPrice = Number(product.slice(product.indexOf(':') + 1));
+
+      total += productPrice;
+      itemText = productName + ' -- $' + productPrice;
+      
+      let listItem = document.createElement('li');
+      listItem.textContent = itemText;
+      list.appendChild(listItem);
+    }
+
+    totalBox.textContent = 'Total: $' + total.toFixed(2);
+  </script>
+</body>
+</html>

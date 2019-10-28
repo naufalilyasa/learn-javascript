@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Top 5 Searches</title>
+</head>
+<body>
+  <div class="output">
+    <h1>Output</h1>
+    <input type="text"><button>Submit</button>
+    <ul></ul>
+  </div>
+
+  <script>
+    let list = document.querySelector('.output ul');
+    let searchInput = document.querySelector('.output input');
+    let searchbutton = document.querySelector('.output button');
+
+    list.textContent = '';
+
+    let myHistory = [];
+
+    searchbutton.onclick = function() {
+      if (searchInput.value !== '') {
+        let retrieveValue = searchInput.value;
+        let insertValue = myHistory.unshift(retrieveValue);
+
+        list.textContent = '';
+
+        for (let i = 0; i < myHistory.length; i++) {
+          itemText = myHistory[i];
+          let listItem = document.createElement('li');
+          listItem.textContent = itemText;
+          list.appendChild(listItem);
+        }
+
+        if (myHistory.length >= 5) {
+          myHistory.pop();
+        }
+
+        searchInput.value = '';
+        searchInput.focus();
+      }
+    } 
+  </script>
+</body>
+</html>
